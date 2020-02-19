@@ -10,7 +10,7 @@ export default class App extends Component {
 
     return (
       <div className="App">
-        <Palette {...originPalettes[4]} />
+        <Palette palette={generatePalette(originPalettes[4])} />
       </div>
     );
   }
