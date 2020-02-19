@@ -1,14 +1,17 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Palette from './Palette';
-import originPalettes from './originPalettes';
+import originPalettes from '../helpers/originPalettes';
+import { generatePalette } from '../helpers/colorHelpers';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <Palette {...originPalettes[4]} />
-    </div>
-  );
-}
+export default class App extends Component {
+  render() {
+    console.log(generatePalette(originPalettes[4]));
 
-export default App;
+    return (
+      <div className="App">
+        <Palette {...originPalettes[4]} />
+      </div>
+    );
+  }
+}
