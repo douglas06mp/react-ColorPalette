@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import PaletteList from './PaletteList';
 import Palette from './Palette';
 import originPalettes from '../helpers/originPalettes';
 import { generatePalette } from '../helpers/colorHelpers';
@@ -14,7 +15,13 @@ export default class App extends Component {
     return (
       <BrowserRouter>
         <Switch>
-          <Route exact path="/" render={() => <h1>Home</h1>} />
+          <Route
+            exact
+            path="/"
+            render={routeProps => (
+              <PaletteList palettes={originPalettes} {...routeProps} />
+            )}
+          />
           <Route
             exact
             path="/palette/:id"
