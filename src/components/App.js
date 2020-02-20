@@ -1,17 +1,33 @@
 import React, { Component } from 'react';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Palette from './Palette';
 import originPalettes from '../helpers/originPalettes';
 import { generatePalette } from '../helpers/colorHelpers';
-import './App.css';
+import './App.scss';
 
 export default class App extends Component {
-  render() {
-    console.log(generatePalette(originPalettes[4]));
+  findPalette = id => {
+    return originPalettes.find(palette => palette.id === id);
+  };
 
+  render() {
     return (
-      <div className="App">
-        <Palette palette={generatePalette(originPalettes[4])} />
-      </div>
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="/" render={() => <h1>Home</h1>} />
+          <Route
+            exact
+            path="/palette/:id"
+            render={routeProps => (
+              <Palette
+                palette={generatePalette(
+                  this.findPalette(routeProps.match.params.id)
+                )}
+              />
+            )}
+          />
+        </Switch>
+      </BrowserRouter>
     );
   }
 }
