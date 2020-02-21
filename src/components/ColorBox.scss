@@ -111,6 +111,13 @@
     text-align: center;
     text-transform: uppercase;
   }
+
+  .light {
+    color: #fff;
+  }
+  .dark {
+    color: rgba(0, 0, 0, 0.8);
+  }
 }
 // SingleColorPalette
 .single-color-palette .color-box {
