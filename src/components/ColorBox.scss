@@ -10,113 +10,19 @@
   background: rgba(255, 255, 255, 0.3);
   color: #fff;
   font-size: 1rem;
+  font-weight: 700;
   line-height: 30px;
   text-transform: uppercase;
-  transition: 0.5s;
 }
 
 .color-box {
   flex-basis: 20%;
-  height: 25%;
   display: inline-block;
   position: relative;
   cursor: pointer;
 
-  .overlay {
-    opacity: 0;
-    z-index: 0;
-    width: 100%;
-    height: 100%;
-    transition: transform 0.5s ease-in-out;
-    transform: scale(0.1);
-
-    &.show {
-      opacity: 1;
-      transform: scale(50);
-      z-index: 10;
-      position: absolute;
-    }
-  }
-
-  .overlay-msg {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: 4rem;
-    transform: scale(0.1);
-    opacity: 0;
-    color: #fff;
-
-    &.show {
-      opacity: 1;
-      transform: scale(1);
-      z-index: 20;
-      transition: 0.4s ease-in-out;
-      transition-delay: 0.3s;
-    }
-
-    h1 {
-      font-size: 400;
-      text-shadow: 1px 2px #000;
-      background: rgba(255, 255, 255, 0.2);
-      width: 100%;
-      text-align: center;
-      padding: 1rem;
-      text-transform: uppercase;
-    }
-
-    p {
-      font-size: 2.5rem;
-      margin-top: 1rem;
-      letter-spacing: 2px;
-    }
-  }
-
-  .content {
-    position: absolute;
-    widows: 100%;
-    left: 0px;
-    bottom: 0px;
-    padding: 10px;
-    color: #000;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    font-size: 12px;
-  }
-
   .copy-button {
     @extend %copy-and-back-button;
-    opacity: 0;
-  }
-  &:hover .copy-button {
-    opacity: 1;
-  }
-
-  .more {
-    background: rgba(255, 255, 255, 0.3);
-    position: absolute;
-    border: none;
-    right: 0;
-    bottom: 0;
-    color: #fff;
-    width: 60px;
-    height: 30px;
-    line-height: 30px;
-    text-align: center;
-    text-transform: uppercase;
-  }
-
-  .light {
-    color: #fff;
-  }
-  .dark {
-    color: rgba(0, 0, 0, 0.8);
   }
 }
 // SingleColorPalette
