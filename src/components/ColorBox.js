@@ -8,6 +8,10 @@ import './ColorBox.scss';
 const styles = {
   colorBox: {
     height: props => (props.showFullPalette ? '25%' : '50%'),
+    flexBasis: '20%',
+    display: 'inline-block',
+    position: 'relative',
+    cursor: 'pointer',
 
     '& button': {
       opacity: '0'
@@ -86,7 +90,20 @@ const styles = {
   },
   copyAndBackButton: {
     color: props =>
-      chroma(props.background).luminance() >= 0.7 ? 'rgba(0,0,0,.7)' : 'white'
+      chroma(props.background).luminance() >= 0.7 ? 'rgba(0,0,0,.7)' : 'white',
+    width: '100px',
+    height: '30px',
+    display: 'inline-block',
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    textAlign: 'center',
+    background: 'rgba(255, 255, 255, 0.3)',
+    fontSize: '1rem',
+    fontWeight: '700',
+    lineHeight: '30px',
+    textTransform: 'uppercase'
   },
   moreText: {
     color: props =>
