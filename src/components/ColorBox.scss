@@ -1,3 +1,20 @@
+%copy-and-back-button {
+  width: 100px;
+  height: 30px;
+  display: inline-block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  background: rgba(255, 255, 255, 0.3);
+  color: #fff;
+  font-size: 1rem;
+  line-height: 30px;
+  text-transform: uppercase;
+  transition: 0.5s;
+}
+
 .color-box {
   flex-basis: 20%;
   height: 25%;
@@ -74,26 +91,11 @@
   }
 
   .copy-button {
-    width: 100px;
-    height: 30px;
-    display: inline-block;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    outline: none;
-    border: none;
-    background: rgba(255, 255, 255, 0.3);
-    color: #fff;
-    font-size: 1rem;
-    line-height: 30px;
-    text-transform: uppercase;
+    @extend %copy-and-back-button;
     opacity: 0;
   }
   &:hover .copy-button {
     opacity: 1;
-    transition: 0.5s;
   }
 
   .more {
@@ -109,4 +111,16 @@
     text-align: center;
     text-transform: uppercase;
   }
+}
+// SingleColorPalette
+.single-color-palette .color-box {
+  height: 50%;
+}
+
+.single-color-palette .back.color-box {
+  background-color: #111;
+}
+
+.single-color-palette .back-button {
+  @extend %copy-and-back-button;
 }

@@ -22,8 +22,6 @@ export default class Palette extends Component {
   };
 
   render() {
-    console.log(this.props);
-
     const { colors, paletteName, emoji, id } = this.props.palette;
     const { level, format } = this.state;
     const colorBoxes = colors[level].map(color => (
@@ -32,6 +30,7 @@ export default class Palette extends Component {
         name={color.name}
         key={color.id}
         colorUrl={`${id}/${color.id}`}
+        showLink
       />
     ));
 
@@ -41,6 +40,7 @@ export default class Palette extends Component {
           level={level}
           changeLevel={this.changeLevel}
           changeFormat={this.changeFormat}
+          showingAllColors
         />
         <div className="colors">{colorBoxes}</div>
         <Footer name={paletteName} emoji={emoji} />

@@ -26,7 +26,7 @@ export default class Navbar extends Component {
   };
 
   render() {
-    const { level, changeLevel } = this.props;
+    const { level, changeLevel, showingAllColors } = this.props;
     const { format, open } = this.state;
 
     return (
@@ -35,18 +35,20 @@ export default class Navbar extends Component {
           <Link to="/">ColorPalette</Link>
         </div>
 
-        <div className="slider-container">
-          <span>Level: {level}</span>
-          <div className="slider">
-            <Slider
-              defaultValue={level}
-              min={100}
-              max={900}
-              step={100}
-              onAfterChange={changeLevel}
-            />
+        {showingAllColors && (
+          <div className="slider-container">
+            <span>Level: {level}</span>
+            <div className="slider">
+              <Slider
+                defaultValue={level}
+                min={100}
+                max={900}
+                step={100}
+                onAfterChange={changeLevel}
+              />
+            </div>
           </div>
-        </div>
+        )}
 
         <div className="select-container">
           <Select onChange={this.handleFormatChange} value={format}>
@@ -66,7 +68,7 @@ export default class Navbar extends Component {
             </span>
           }
           ContentProps={{
-            'aria-decribedby': 'message'
+            'aria-describedby': 'message'
           }}
           onClose={this.closeSnackbar}
           action={[
