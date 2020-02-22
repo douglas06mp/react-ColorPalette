@@ -19,11 +19,15 @@ export default {
     marginBottom: '20px',
     display: 'flex',
     justifyContent: 'space-between',
-    color: 'white',
+    alignItems: 'center',
+    color: '#fff',
 
     '& h1': {
       fontFamily: 'Ubuntu',
       fontSize: '2rem'
+    },
+    '& a': {
+      color: '#fff'
     }
   },
   palettesContainer: {
