@@ -12,6 +12,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import Button from '@material-ui/core/Button';
 import { ChromePicker } from 'react-color';
+import { colors } from '@material-ui/core';
 
 const drawerWidth = 400;
 
@@ -72,7 +73,10 @@ const styles = theme => ({
 });
 
 class NewPaletteForm extends Component {
-  state = { open: false };
+  constructor(props) {
+    super(props);
+    this.state = { open: false, color: 'teal', colors: ['#a5e4ff'] };
+  }
 
   handleDrawerOpen = () => {
     this.setState({ open: true });
@@ -82,9 +86,17 @@ class NewPaletteForm extends Component {
     this.setState({ open: false });
   };
 
+  changeColor = newColor => {
+    this.setState({ color: newColor.hex });
+  };
+
+  addNewColor = () => {
+    this.setState({ colors: [...this.state.colors, this.state.color] });
+  };
+
   render() {
     const { classes } = this.props;
-    const { open } = this.state;
+    const { open, color, colors } = this.state;
     return (
       <div className={classes.root}>
         <CssBaseline />
@@ -134,11 +146,13 @@ class NewPaletteForm extends Component {
             </Button>
           </div>
 
-          <ChromePicker
-            color="purple"
-            onChangeComplete={newColor => console.log(newColor)}
-          />
-          <Button variant="contained" color="primary">
+          <ChromePicker color={color} onChangeComplete={this.changeColor} />
+          <Button
+            variant="contained"
+            color="primary"
+            style={{ backgroundColor: color }}
+            onClick={this.addNewColor}
+          >
             Add Color
           </Button>
         </Drawer>
@@ -148,6 +162,11 @@ class NewPaletteForm extends Component {
           })}
         >
           <div className={classes.drawerHeader} />
+          <ul>
+            {colors.map(color => (
+              <li style={{ backgroundColor: color }}>{color}</li>
+            ))}
+          </ul>
         </main>
       </div>
     );
