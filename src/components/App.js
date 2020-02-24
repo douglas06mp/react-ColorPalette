@@ -9,11 +9,20 @@ import { generatePalette } from '../helpers/colorHelpers';
 import './App.scss';
 
 export default class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { palettes: originPalettes };
+  }
   findPalette = id => {
-    return originPalettes.find(palette => palette.id === id);
+    return this.state.palettes.find(palette => palette.id === id);
+  };
+
+  savePalette = newPalette => {
+    this.setState({ palettes: [...this.state.palettes, newPalette] });
   };
 
   render() {
+    const { palettes } = this.state;
     return (
       <BrowserRouter>
         <Switch>
@@ -21,10 +30,16 @@ export default class App extends Component {
             exact
             path="/"
             render={routeProps => (
-              <PaletteList palettes={originPalettes} {...routeProps} />
+              <PaletteList palettes={palettes} {...routeProps} />
             )}
           />
-          <Route exact path="/palette/new" render={() => <NewPaletteForm />} />
+          <Route
+            exact
+            path="/palette/new"
+            render={routeProps => (
+              <NewPaletteForm {...routeProps} savePalette={this.savePalette} />
+            )}
+          />
           <Route
             exact
             path="/palette/:id"

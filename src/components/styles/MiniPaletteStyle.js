@@ -14,14 +14,15 @@ export default {
     height: '150px',
     display: 'flex',
     flexWrap: 'wrap',
+    justifyContent: 'flex-start',
+    alignContent: 'flex-start',
     borderRadius: '5px',
     overflow: 'hidden'
   },
   miniColorBox: {
     flexBasis: '20%',
     height: '25%',
-    display: 'inline-block',
-    margin: '0 auto'
+    display: 'inline-block'
   },
   title: {
     display: 'flex',

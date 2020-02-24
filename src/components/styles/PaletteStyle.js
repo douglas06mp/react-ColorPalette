@@ -8,7 +8,9 @@ export default {
   paletteColors: {
     height: '90%',
     display: 'flex',
-    flexWrap: 'wrap'
+    flexWrap: 'wrap',
+    justifyContent: 'flex-start',
+    alignContent: 'flex-start'
   },
   back: {
     height: '50%',
