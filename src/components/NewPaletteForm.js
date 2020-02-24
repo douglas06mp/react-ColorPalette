@@ -80,8 +80,9 @@ class NewPaletteForm extends Component {
     this.state = {
       open: false,
       color: 'teal',
+      colorName: '',
       colors: [],
-      colorName: ''
+      paletteName: ''
     };
   }
 
@@ -93,6 +94,11 @@ class NewPaletteForm extends Component {
     });
     ValidatorForm.addValidationRule('isColorUnique', value => {
       return this.state.colors.every(({ color }) => color !== this.state.color);
+    });
+    ValidatorForm.addValidationRule('isPaletteNameUnique', value => {
+      return this.props.palettes.every(
+        ({ paletteName }) => paletteName.toLowerCase() !== value.toLowerCase()
+      );
     });
   }
 
@@ -109,19 +115,22 @@ class NewPaletteForm extends Component {
   };
 
   addNewColor = () => {
-    const newColor = { color: this.state.color, name: this.state.name };
-    this.setState({ colors: [...this.state.colors, newColor], name: '' });
+    const newColor = {
+      color: this.state.color,
+      name: this.state.colorName
+    };
+    this.setState({ colors: [...this.state.colors, newColor], colorName: '' });
   };
 
   handleChange = e => {
-    this.setState({ name: e.target.value });
+    this.setState({ [e.target.name]: e.target.value });
   };
 
   savePalette = () => {
-    const name = 'New Test Palette';
+    const paletteName = this.state.paletteName;
     const newPalette = {
-      paletteName: name,
-      id: name.toLowerCase().replace(/ /g, '-'),
+      paletteName,
+      id: paletteName.toLowerCase().replace(/ /g, '-'),
       colors: this.state.colors
     };
     this.props.savePalette(newPalette);
@@ -130,7 +139,7 @@ class NewPaletteForm extends Component {
 
   render() {
     const { classes } = this.props;
-    const { open, color, colors, name } = this.state;
+    const { open, color, colors, colorName, paletteName } = this.state;
     return (
       <div className={classes.root}>
         <CssBaseline />
@@ -154,13 +163,22 @@ class NewPaletteForm extends Component {
             <Typography variant="h6" noWrap>
               Persistent drawer
             </Typography>
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={this.savePalette}
-            >
-              Save Palette
-            </Button>
+            <ValidatorForm onSubmit={this.savePalette}>
+              <TextValidator
+                name="paletteName"
+                value={paletteName}
+                label="Palette Name"
+                onChange={this.handleChange}
+                validators={['required', 'isPaletteNameUnique']}
+                errorMessages={[
+                  'Enter palette name',
+                  'Palette name must be unique'
+                ]}
+              />
+              <Button type="submit" variant="contained" color="primary">
+                Save Palette
+              </Button>
+            </ValidatorForm>
           </Toolbar>
         </AppBar>
         <Drawer
@@ -191,7 +209,8 @@ class NewPaletteForm extends Component {
           <ChromePicker color={color} onChangeComplete={this.changeColor} />
           <ValidatorForm onSubmit={this.addNewColor}>
             <TextValidator
-              value={name}
+              name="colorName"
+              value={colorName}
               onChange={this.handleChange}
               validators={['required', 'isColorNameUnique', 'isColorUnique']}
               errorMessages={[
