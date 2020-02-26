@@ -4,10 +4,9 @@ import { withStyles } from '@material-ui/styles';
 
 const styles = {
   box: {
-    width: '20%',
+    flexBasis: '20%',
     height: '25%',
     display: 'inline-block',
-    margin: '0 auto -3.5px',
     position: 'relative',
     cursor: 'pointer',
 
