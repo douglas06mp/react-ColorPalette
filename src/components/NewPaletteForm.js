@@ -2,19 +2,16 @@ import React, { Component } from 'react';
 import clsx from 'clsx';
 import { withStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import Button from '@material-ui/core/Button';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import { ChromePicker } from 'react-color';
 import { arrayMove } from 'react-sortable-hoc';
 import DraggableColorList from './DraggableColorList';
+import NewPaletteFormNav from './NewPaletteFormNav';
 
 const drawerWidth = 400;
 
@@ -81,11 +78,10 @@ class NewPaletteForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      open: false,
+      open: true,
       color: 'aquamarine',
       colorName: '',
-      colors: this.props.palettes[0].colors,
-      paletteName: ''
+      colors: this.props.palettes[0].colors
     };
   }
 
@@ -97,11 +93,6 @@ class NewPaletteForm extends Component {
     });
     ValidatorForm.addValidationRule('isColorUnique', value => {
       return this.state.colors.every(({ color }) => color !== this.state.color);
-    });
-    ValidatorForm.addValidationRule('isPaletteNameUnique', value => {
-      return this.props.palettes.every(
-        ({ paletteName }) => paletteName.toLowerCase() !== value.toLowerCase()
-      );
     });
   }
 
@@ -129,8 +120,7 @@ class NewPaletteForm extends Component {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  savePalette = () => {
-    const paletteName = this.state.paletteName;
+  savePalette = paletteName => {
     const newPalette = {
       paletteName,
       id: paletteName.toLowerCase().replace(/ /g, '-'),
@@ -164,52 +154,19 @@ class NewPaletteForm extends Component {
   };
 
   render() {
-    const { classes, MAX_COLORS } = this.props;
-    const { open, color, colors, colorName, paletteName } = this.state;
+    const { classes, palettes, MAX_COLORS } = this.props;
+    const { open, color, colors, colorName } = this.state;
     const isPaletteFull = colors.length >= MAX_COLORS;
 
     return (
       <div className={classes.root}>
-        <CssBaseline />
-        <AppBar
-          color="default"
-          position="fixed"
-          className={clsx(classes.appBar, {
-            [classes.appBarShift]: open
-          })}
-        >
-          <Toolbar>
-            <IconButton
-              color="inherit"
-              aria-label="open drawer"
-              onClick={this.handleDrawerOpen}
-              edge="start"
-              className={clsx(classes.menuButton, open && classes.hide)}
-            >
-              <MenuIcon />
-            </IconButton>
-            <Typography variant="h6" noWrap>
-              Persistent drawer
-            </Typography>
-            <ValidatorForm onSubmit={this.savePalette}>
-              <TextValidator
-                name="paletteName"
-                value={paletteName}
-                label="Palette Name"
-                autoComplete="off"
-                onChange={this.handleChange}
-                validators={['required', 'isPaletteNameUnique']}
-                errorMessages={[
-                  'Enter palette name',
-                  'Palette name must be unique'
-                ]}
-              />
-              <Button type="submit" variant="contained" color="primary">
-                Save Palette
-              </Button>
-            </ValidatorForm>
-          </Toolbar>
-        </AppBar>
+        <NewPaletteFormNav
+          open={open}
+          classes={classes}
+          palettes={palettes}
+          savePalette={this.savePalette}
+          handleDrawerOpen={this.handleDrawerOpen}
+        />
         <Drawer
           className={classes.drawer}
           variant="persistent"
