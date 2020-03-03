@@ -58,6 +58,10 @@ class NewPaletteFormNav extends Component {
     this.setState({ isFormShowing: true });
   };
 
+  hideForm = () => {
+    this.setState({ isFormShowing: false });
+  };
+
   render() {
     const {
       classes,
@@ -93,7 +97,6 @@ class NewPaletteFormNav extends Component {
             </Typography>
           </Toolbar>
           <div className={classes.navBtns}>
-            <PaletteMataForm palettes={palettes} savePalette={savePalette} />
             <Link to="/">
               <Button
                 variant="contained"
@@ -114,7 +117,11 @@ class NewPaletteFormNav extends Component {
           </div>
         </AppBar>
         {isFormShowing && (
-          <PaletteMataForm palettes={palettes} savePalette={savePalette} />
+          <PaletteMataForm
+            palettes={palettes}
+            savePalette={savePalette}
+            hideForm={this.hideForm}
+          />
         )}
       </div>
     );

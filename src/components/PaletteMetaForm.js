@@ -6,6 +6,8 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
+import { Picker } from 'emoji-mart';
+import 'emoji-mart/css/emoji-mart.css';
 
 export default class PalletteMetaForm extends Component {
   constructor(props) {
@@ -37,13 +39,13 @@ export default class PalletteMetaForm extends Component {
   };
 
   render() {
-    const { savePalette } = this.props;
+    const { savePalette, hideForm } = this.props;
     const { open, paletteName } = this.state;
 
     return (
       <Dialog
         open={open}
-        onClose={this.handleClose}
+        onClose={hideForm}
         aria-labelledby="form-dialog-title"
       >
         <DialogTitle id="form-dialog-title">Enter Palette Name</DialogTitle>
@@ -69,7 +71,7 @@ export default class PalletteMetaForm extends Component {
             />
           </DialogContent>
           <DialogActions>
-            <Button onClick={this.handleClose} color="primary">
+            <Button onClick={hideForm} color="primary">
               Cancel
             </Button>
             <Button type="submit" variant="contained" color="primary">
