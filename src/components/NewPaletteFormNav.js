@@ -10,6 +10,7 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import Button from '@material-ui/core/Button';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
+import PaletteMataForm from './PaletteMetaForm';
 
 const drawerWidth = 400;
 
@@ -43,26 +44,17 @@ const styles = theme => ({
 class NewPaletteFormNav extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      paletteName: ''
-    };
+    this.state = {};
   }
-
-  componentDidMount() {
-    ValidatorForm.addValidationRule('isPaletteNameUnique', value => {
-      return this.props.palettes.every(
-        ({ paletteName }) => paletteName.toLowerCase() !== value.toLowerCase()
-      );
-    });
-  }
-
-  handleChange = e => {
-    this.setState({ [e.target.name]: e.target.value });
-  };
 
   render() {
-    const { classes, open, savePalette, handleDrawerOpen } = this.props;
-    const { paletteName } = this.state;
+    const {
+      classes,
+      open,
+      savePalette,
+      palettes,
+      handleDrawerOpen
+    } = this.props;
 
     return (
       <div className={classes.root}>
@@ -89,23 +81,7 @@ class NewPaletteFormNav extends Component {
             </Typography>
           </Toolbar>
           <div className={classes.navBtns}>
-            <ValidatorForm onSubmit={() => savePalette(paletteName)}>
-              <TextValidator
-                name="paletteName"
-                value={paletteName}
-                label="Palette Name"
-                autoComplete="off"
-                onChange={this.handleChange}
-                validators={['required', 'isPaletteNameUnique']}
-                errorMessages={[
-                  'Enter palette name',
-                  'Palette name must be unique'
-                ]}
-              />
-              <Button type="submit" variant="contained" color="primary">
-                Save Palette
-              </Button>
-            </ValidatorForm>
+            <PaletteMataForm palettes={palettes} savePalette={savePalette} />
             <Link to="/">
               <Button variant="contained" color="secondary">
                 Go Back
