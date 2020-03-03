@@ -9,7 +9,6 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import Button from '@material-ui/core/Button';
-import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import PaletteMataForm from './PaletteMetaForm';
 
 const drawerWidth = 400;
@@ -25,6 +24,7 @@ const styles = theme => ({
     }),
     flexDirection: 'row',
     justifyContent: 'space-between',
+    alignItems: 'center',
     height: '64px'
   },
   appBarShift: {
@@ -38,14 +38,25 @@ const styles = theme => ({
   menuButton: {
     marginRight: theme.spacing(2)
   },
-  navBtns: {}
+  navBtns: {
+    marginRight: '1rem'
+  },
+  button: {
+    margin: '0 .5rem'
+  }
 });
 
 class NewPaletteFormNav extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      isFormShowing: false
+    };
   }
+
+  showForm = () => {
+    this.setState({ isFormShowing: true });
+  };
 
   render() {
     const {
@@ -55,6 +66,7 @@ class NewPaletteFormNav extends Component {
       palettes,
       handleDrawerOpen
     } = this.props;
+    const { isFormShowing } = this.state;
 
     return (
       <div className={classes.root}>
@@ -83,12 +95,27 @@ class NewPaletteFormNav extends Component {
           <div className={classes.navBtns}>
             <PaletteMataForm palettes={palettes} savePalette={savePalette} />
             <Link to="/">
-              <Button variant="contained" color="secondary">
+              <Button
+                variant="contained"
+                color="secondary"
+                className={classes.button}
+              >
                 Go Back
               </Button>
             </Link>
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={this.showForm}
+              className={classes.button}
+            >
+              Save
+            </Button>
           </div>
         </AppBar>
+        {isFormShowing && (
+          <PaletteMataForm palettes={palettes} savePalette={savePalette} />
+        )}
       </div>
     );
   }
