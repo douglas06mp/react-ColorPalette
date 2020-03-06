@@ -5,9 +5,27 @@ export default {
     padding: '.5rem',
     position: 'relative',
     overflow: 'hidden',
-    '&:hover': {
-      cursor: 'pointer'
+    cursor: 'pointer',
+    '&:hover .delete': {
+      opacity: 1
     }
+  },
+  deleteContainer: {
+    width: '32px',
+    height: '32px',
+    backgroundColor: '#eb3d30',
+    position: 'absolute',
+    right: '0px',
+    top: '0px',
+    zIndex: '10',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    opacity: 0,
+    transition: 'all .3s ease-in-out'
+  },
+  deleteIcon: {
+    color: '#fff'
   },
   colorsContainer: {
     width: '100%',
