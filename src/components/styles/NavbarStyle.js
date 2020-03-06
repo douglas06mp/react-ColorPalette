@@ -1,3 +1,5 @@
+import breakpoints from '../../helpers/mediaQuery';
+
 export default {
   navbar: {
     display: 'flex',
@@ -7,7 +9,6 @@ export default {
   },
   logo: {
     width: '180px',
-    marginRight: '15px',
     padding: '0 13px',
     fontSize: '24px',
     backgroundColor: '#eceff1',
@@ -20,7 +21,14 @@ export default {
     '& a': {
       color: '#000',
       fontWeight: '700'
+    },
+
+    [breakpoints.down('sm')]: {
+      display: 'none'
     }
+  },
+  sliderContainer: {
+    marginLeft: '15px'
   },
   slider: {
     width: '340px',
@@ -42,6 +50,9 @@ export default {
       height: '13px',
       marginLeft: '-7px',
       marginTop: '-3px'
+    },
+    [breakpoints.down('xs')]: {
+      width: '150px'
     }
   },
   select: {

@@ -1,3 +1,5 @@
+import breakpoints from '../../helpers/mediaQuery';
+
 export default {
   box: {
     flexBasis: '20%',
@@ -9,6 +11,19 @@ export default {
     '&:hover svg': {
       color: '#fff',
       transform: 'scale(1.3)'
+    },
+
+    [breakpoints.down('lg')]: {
+      flexBasis: '25%',
+      height: '20%'
+    },
+    [breakpoints.down('md')]: {
+      flexBasis: '50%',
+      height: '10%'
+    },
+    [breakpoints.down('sm')]: {
+      flexBasis: '100%',
+      height: '5%'
     }
   },
   content: {
