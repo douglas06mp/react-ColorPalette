@@ -4,8 +4,13 @@ import { withStyles } from '@material-ui/styles';
 import styles from './styles/MiniPaletteStyle';
 
 class MiniPalette extends Component {
+  deletePalette = e => {
+    e.stopPropagation();
+    this.props.deletePalette(this.props.id);
+  };
+
   render() {
-    const { paletteName, emoji, colors } = this.props;
+    const { paletteName, emoji, colors, goToPalette } = this.props;
     const {
       paletteBox,
       deleteContainer,
@@ -25,8 +30,11 @@ class MiniPalette extends Component {
     ));
 
     return (
-      <div className={paletteBox} onClick={this.props.goToPalette}>
-        <div className={`delete ${deleteContainer}`}>
+      <div className={paletteBox} onClick={goToPalette}>
+        <div
+          className={`delete ${deleteContainer}`}
+          onClick={this.deletePalette}
+        >
           <DeleteIcon className={deleteIcon} />
         </div>
         <div className={colorsContainer}>{miniColorBoxes}</div>
