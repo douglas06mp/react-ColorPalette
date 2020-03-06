@@ -1,4 +1,6 @@
 import chroma from 'chroma-js';
+import breakpoints from '../../helpers/mediaQuery';
+
 export default {
   colorBox: {
     height: props => (props.showFullPalette ? '25%' : '50%'),
@@ -6,13 +8,21 @@ export default {
     display: 'inline-block',
     position: 'relative',
     cursor: 'pointer',
-
-    '& button': {
-      opacity: '0'
-    },
     '&:hover button': {
-      opacity: '1',
-      transition: '.5s'
+      opacity: '1'
+    },
+
+    [breakpoints.down('lg')]: {
+      flexBasis: '25%',
+      height: props => (props.showFullPalette ? '20%' : '33.33%')
+    },
+    [breakpoints.down('md')]: {
+      flexBasis: '50%',
+      height: props => (props.showFullPalette ? '10%' : '20%')
+    },
+    [breakpoints.down('xs')]: {
+      flexBasis: '100%',
+      height: props => (props.showFullPalette ? '5%' : '10%')
     }
   },
   overlay: {
@@ -49,7 +59,11 @@ export default {
       textAlign: 'center',
       padding: '1rem',
       textTransform: 'uppercase',
-      color: '#fff'
+      color: '#fff',
+
+      [breakpoints.down('xs')]: {
+        fontSize: '5rem'
+      }
     },
     '& p': {
       fontSize: '2.5rem',
@@ -82,7 +96,7 @@ export default {
     color: props =>
       chroma(props.background).luminance() <= 0.1 ? 'white' : 'black'
   },
-  copyAndBackButton: {
+  copyButton: {
     color: props =>
       chroma(props.background).luminance() >= 0.7 ? 'rgba(0,0,0,.7)' : 'white',
     width: '100px',
@@ -97,7 +111,9 @@ export default {
     fontSize: '1rem',
     fontWeight: '700',
     lineHeight: '30px',
-    textTransform: 'uppercase'
+    textTransform: 'uppercase',
+    opacity: 0,
+    transition: 'all .6s ease'
   },
   moreText: {
     color: props =>

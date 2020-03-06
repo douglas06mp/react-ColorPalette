@@ -1,3 +1,5 @@
+import breakpoints from '../../helpers/mediaQuery';
+
 export default {
   palette: {
     height: '100vh',
@@ -19,6 +21,9 @@ export default {
     position: 'relative',
     cursor: 'pointer',
     backgroundColor: '#111',
+    '&:hover a': {
+      opacity: 1
+    },
 
     '& a': {
       width: '100px',
@@ -34,7 +39,22 @@ export default {
       fontSize: '1rem',
       fontWeight: '700',
       lineHeight: '30px',
-      textTransform: 'uppercase'
+      textTransform: 'uppercase',
+      opacity: 0,
+      transition: 'all .6s ease'
+    },
+
+    [breakpoints.down('lg')]: {
+      flexBasis: '25%',
+      height: '33.3333%'
+    },
+    [breakpoints.down('md')]: {
+      flexBasis: '50%',
+      height: '20%'
+    },
+    [breakpoints.down('xs')]: {
+      flexBasis: '100%',
+      height: '10%'
     }
   }
 };

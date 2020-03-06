@@ -28,7 +28,7 @@ class ColorBox extends Component {
       nameContainer,
       colorName,
       moreText,
-      copyAndBackButton
+      copyButton
     } = this.props.classes;
     const { copied } = this.state;
 
@@ -48,7 +48,7 @@ class ColorBox extends Component {
             <div className={nameContainer}>
               <span className={colorName}>{name}</span>
             </div>
-            <button className={copyAndBackButton}>Copy</button>
+            <button className={copyButton}>Copy</button>
           </div>
 
           {showFullPalette && (
