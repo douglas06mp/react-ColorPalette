@@ -1,16 +1,20 @@
 import breakpoints from '../../helpers/mediaQuery';
+import background from './background.svg';
 
 export default {
   wrapper: {
-    backgroundColor: 'lightblue',
     height: '100vh',
     display: 'flex',
     justifyContent: 'center',
-    alignItems: 'flex-start'
+    alignItems: 'flex-start',
+    overflowY: 'scroll',
+    /* background by SVGBackgrounds.com */
+    backgroundColor: '#2b82fc',
+    backgroundImage: `url(${background})`
   },
   container: {
     width: '50%',
-    marginTop: '30px',
+    margin: '30px 0',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'flex-start',
