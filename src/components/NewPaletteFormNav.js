@@ -29,23 +29,26 @@ class NewPaletteFormNav extends Component {
   };
 
   render() {
+    const { open, savePalette, palettes, handleDrawerOpen } = this.props;
     const {
-      classes,
-      open,
-      savePalette,
-      palettes,
-      handleDrawerOpen
-    } = this.props;
+      root,
+      appBar,
+      appBarShift,
+      menuButton,
+      hide,
+      navBtns,
+      button
+    } = this.props.classes;
     const { isFormShowing } = this.state;
 
     return (
-      <div className={classes.root}>
+      <div className={root}>
         {/* <CssBaseline /> */}
         <AppBar
           color="default"
           position="fixed"
-          className={clsx(classes.appBar, {
-            [classes.appBarShift]: open
+          className={clsx(appBar, {
+            [appBarShift]: open
           })}
         >
           <Toolbar>
@@ -54,7 +57,7 @@ class NewPaletteFormNav extends Component {
               aria-label="open drawer"
               onClick={handleDrawerOpen}
               edge="start"
-              className={clsx(classes.menuButton, { [classes.hide]: open })}
+              className={clsx(menuButton, { [hide]: open })}
             >
               <ColorLens />
             </IconButton>
@@ -62,13 +65,9 @@ class NewPaletteFormNav extends Component {
               Create Palette
             </Typography>
           </Toolbar>
-          <div className={classes.navBtns}>
+          <div className={navBtns}>
             <Link to="/">
-              <Button
-                variant="contained"
-                color="secondary"
-                className={classes.button}
-              >
+              <Button variant="contained" color="secondary" className={button}>
                 Go Back
               </Button>
             </Link>
@@ -76,7 +75,7 @@ class NewPaletteFormNav extends Component {
               variant="contained"
               color="primary"
               onClick={this.showForm}
-              className={classes.button}
+              className={button}
             >
               Save
             </Button>

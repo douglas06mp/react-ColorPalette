@@ -73,12 +73,23 @@ class NewPaletteForm extends Component {
   };
 
   render() {
-    const { classes, palettes, MAX_COLORS } = this.props;
+    const { palettes, MAX_COLORS } = this.props;
+    const {
+      root,
+      drawer,
+      drawerPaper,
+      drawerHeader,
+      container,
+      buttons,
+      button,
+      content,
+      contentShift
+    } = this.props.classes;
     const { open, colors } = this.state;
     const isPaletteFull = colors.length >= MAX_COLORS;
 
     return (
-      <div className={classes.root}>
+      <div className={root}>
         <NewPaletteFormNav
           open={open}
           palettes={palettes}
@@ -86,31 +97,31 @@ class NewPaletteForm extends Component {
           handleDrawerOpen={this.handleDrawerOpen}
         />
         <Drawer
-          className={classes.drawer}
+          className={drawer}
           variant="persistent"
           anchor="left"
           open={open}
           classes={{
-            paper: classes.drawerPaper
+            paper: drawerPaper
           }}
         >
-          <div className={classes.drawerHeader}>
+          <div className={drawerHeader}>
             <IconButton onClick={this.handleDrawerClose}>
               <ChevronLeftIcon />
             </IconButton>
           </div>
           <Divider />
 
-          <div className={classes.container}>
+          <div className={container}>
             <Typography variant="h4" gutterBottom>
               Design Your Palette
             </Typography>
-            <div className={classes.buttons}>
+            <div className={buttons}>
               <Button
                 variant="contained"
                 color="secondary"
                 onClick={this.clearPalette}
-                className={classes.button}
+                className={button}
               >
                 Clear Palette
               </Button>
@@ -120,7 +131,7 @@ class NewPaletteForm extends Component {
                 onClick={this.addRandomColor}
                 disabled={isPaletteFull}
                 style={{ backgroundColor: isPaletteFull ? 'lightgrey' : '' }}
-                className={classes.button}
+                className={button}
               >
                 Random Color
               </Button>
@@ -135,11 +146,11 @@ class NewPaletteForm extends Component {
         </Drawer>
 
         <main
-          className={clsx(classes.content, {
-            [classes.contentShift]: open
+          className={clsx(content, {
+            [contentShift]: open
           })}
         >
-          <div className={classes.drawerHeader} />
+          <div className={drawerHeader} />
 
           <DraggableColorList
             colors={colors}
