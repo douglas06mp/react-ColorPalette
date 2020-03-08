@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import PaletteList from './PaletteList';
 import Palette from './Palette';
 import SingleColorPalette from './SingleColorPalette';
 import NewPaletteForm from './NewPaletteForm';
+import Page from './Page';
 import originPalettes from '../helpers/originPalettes';
 import { generatePalette } from '../helpers/colorHelpers';
 import './App.scss';
@@ -46,53 +48,69 @@ export default class App extends Component {
     const { palettes } = this.state;
     return (
       <BrowserRouter>
-        <Switch>
-          <Route
-            exact
-            path="/"
-            render={routeProps => (
-              <PaletteList
-                {...routeProps}
-                palettes={palettes}
-                deletePalette={this.deletePalette}
-              />
-            )}
-          />
-          <Route
-            exact
-            path="/palette/new"
-            render={routeProps => (
-              <NewPaletteForm
-                {...routeProps}
-                palettes={palettes}
-                savePalette={this.savePalette}
-              />
-            )}
-          />
-          <Route
-            exact
-            path="/palette/:id"
-            render={routeProps => (
-              <Palette
-                palette={generatePalette(
-                  this.findPalette(routeProps.match.params.id)
-                )}
-              />
-            )}
-          />
-          <Route
-            exact
-            path="/palette/:paletteId/:colorId"
-            render={routeProps => (
-              <SingleColorPalette
-                palette={generatePalette(
-                  this.findPalette(routeProps.match.params.paletteId)
-                )}
-                colorId={routeProps.match.params.colorId}
-              />
-            )}
-          />
-        </Switch>
+        <Route
+          render={({ location }) => (
+            <TransitionGroup>
+              <CSSTransition key={location.key} classNames="page" timeout={500}>
+                <Switch location={location}>
+                  <Route
+                    exact
+                    path="/"
+                    render={routeProps => (
+                      <Page>
+                        <PaletteList
+                          {...routeProps}
+                          palettes={palettes}
+                          deletePalette={this.deletePalette}
+                        />
+                      </Page>
+                    )}
+                  />
+                  <Route
+                    exact
+                    path="/palette/new"
+                    render={routeProps => (
+                      <Page>
+                        <NewPaletteForm
+                          {...routeProps}
+                          palettes={palettes}
+                          savePalette={this.savePalette}
+                        />
+                      </Page>
+                    )}
+                  />
+                  <Route
+                    exact
+                    path="/palette/:id"
+                    render={routeProps => (
+                      <Page>
+                        <Palette
+                          palette={generatePalette(
+                            this.findPalette(routeProps.match.params.id)
+                          )}
+                        />
+                      </Page>
+                    )}
+                  />
+                  <Route
+                    exact
+                    path="/palette/:paletteId/:colorId"
+                    render={routeProps => (
+                      <Page>
+                        <SingleColorPalette
+                          palette={generatePalette(
+                            this.findPalette(routeProps.match.params.paletteId)
+                          )}
+                          colorId={routeProps.match.params.colorId}
+                        />
+                      </Page>
+                    )}
+                  />
+                </Switch>
+              </CSSTransition>
+            </TransitionGroup>
+          )}
+        />
       </BrowserRouter>
     );
   }

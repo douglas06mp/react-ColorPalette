@@ -1,6 +1,15 @@
 import breakpoints from '../../helpers/mediaQuery';
 
 export default {
+  '@global': {
+    '.fade-exit': {
+      opacity: 1
+    },
+    '.fade-exit-active': {
+      opacity: 0,
+      transition: 'opacity .4s ease'
+    }
+  },
   palette: {
     height: '100vh',
     overflow: 'hidden',
