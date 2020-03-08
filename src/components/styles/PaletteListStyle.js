@@ -2,6 +2,15 @@ import breakpoints from '../../helpers/mediaQuery';
 import background from './background.svg';
 
 export default {
+  '@global': {
+    '.fade-exit': {
+      opacity: 1
+    },
+    '.fade-exit-active': {
+      opacity: 0,
+      transition: 'opacity .5s'
+    }
+  },
   wrapper: {
     height: '100vh',
     display: 'flex',
