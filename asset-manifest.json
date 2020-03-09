@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/react-ColorPalette/static/css/main.ae5c30b9.chunk.css",
+    "main.js": "/react-ColorPalette/static/js/main.03fb085b.chunk.js",
+    "main.js.map": "/react-ColorPalette/static/js/main.03fb085b.chunk.js.map",
+    "runtime-main.js": "/react-ColorPalette/static/js/runtime-main.8b47469e.js",
+    "runtime-main.js.map": "/react-ColorPalette/static/js/runtime-main.8b47469e.js.map",
+    "static/css/2.36bfdc33.chunk.css": "/react-ColorPalette/static/css/2.36bfdc33.chunk.css",
+    "static/js/2.0a0daa69.chunk.js": "/react-ColorPalette/static/js/2.0a0daa69.chunk.js",
+    "static/js/2.0a0daa69.chunk.js.map": "/react-ColorPalette/static/js/2.0a0daa69.chunk.js.map",
+    "index.html": "/react-ColorPalette/index.html",
+    "precache-manifest.7ed88eb734282bc80029225e713fe15b.js": "/react-ColorPalette/precache-manifest.7ed88eb734282bc80029225e713fe15b.js",
+    "service-worker.js": "/react-ColorPalette/service-worker.js",
+    "static/css/2.36bfdc33.chunk.css.map": "/react-ColorPalette/static/css/2.36bfdc33.chunk.css.map",
+    "static/css/main.ae5c30b9.chunk.css.map": "/react-ColorPalette/static/css/main.ae5c30b9.chunk.css.map",
+    "static/js/2.0a0daa69.chunk.js.LICENSE.txt": "/react-ColorPalette/static/js/2.0a0daa69.chunk.js.LICENSE.txt",
+    "static/media/background.svg": "/react-ColorPalette/static/media/background.154ada57.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.8b47469e.js",
+    "static/css/2.36bfdc33.chunk.css",
+    "static/js/2.0a0daa69.chunk.js",
+    "static/css/main.ae5c30b9.chunk.css",
+    "static/js/main.03fb085b.chunk.js"
+  ]
+}
