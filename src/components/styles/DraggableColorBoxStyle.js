@@ -1,3 +1,4 @@
+import chroma from 'chroma-js';
 import breakpoints from '../../helpers/mediaQuery';
 
 export default {
@@ -36,7 +37,10 @@ export default {
     textTransform: 'uppercase',
     fontSize: '14px',
     fontWeight: '700',
-    color: 'rgba(0,0,0,.5)',
+    color: props =>
+      chroma(props.color).luminance() <= 0.1
+        ? 'rgba(255,255,255,.8)'
+        : 'rgba(0,0,0,.6)',
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center'
