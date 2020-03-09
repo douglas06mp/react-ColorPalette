@@ -29,7 +29,7 @@ export default {
   },
   colorsContainer: {
     width: '100%',
-    height: '150px',
+    height: '140px',
     display: 'flex',
     flexWrap: 'wrap',
     justifyContent: 'flex-start',
@@ -47,7 +47,7 @@ export default {
     justifyContent: 'space-between',
     alignItems: 'center',
     color: 'black',
-    paddingTop: '.5rem',
+    paddingTop: '5px',
     fontSize: '1rem'
   },
   emojiIcon: {
