@@ -11,8 +11,8 @@ import { arrayMove } from 'react-sortable-hoc';
 import DraggableColorList from './DraggableColorList';
 import NewPaletteFormNav from './NewPaletteFormNav';
 import ColorPickerForm from './ColorPickerForm';
-import originPalettes from '../helpers/originPalettes';
-import styles from './styles/NewPaletteFormStyle';
+import originPalettes from '../../helpers/originPalettes';
+import styles from '../styles/NewPaletteFormStyle';
 
 class NewPaletteForm extends Component {
   static defaultProps = {

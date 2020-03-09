@@ -10,7 +10,7 @@ import IconButton from '@material-ui/core/IconButton';
 import ColorLens from '@material-ui/icons/ColorLens';
 import Button from '@material-ui/core/Button';
 import PaletteMataForm from './PaletteMetaForm';
-import styles from './styles/NewPaletteFormNavStyle';
+import styles from '../styles/NewPaletteFormNavStyle';
 
 class NewPaletteFormNav extends Component {
   constructor(props) {

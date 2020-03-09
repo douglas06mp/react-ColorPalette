@@ -1,4 +1,4 @@
-import { drawerWidth } from '../constants';
+import { drawerWidth } from '../../helpers/constants';
 
 export default theme => ({
   root: {

@@ -1,5 +1,4 @@
 export default {
-  up() {},
   down(breakpoint) {
     const breakpoints = {
       xs: '576px',

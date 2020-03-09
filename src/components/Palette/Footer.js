@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { withStyles } from '@material-ui/styles';
-import styles from './styles/FooterStyle';
+import styles from '../styles/FooterStyle';
 
 class Footer extends Component {
   render() {
